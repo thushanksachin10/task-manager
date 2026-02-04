@@ -44,18 +44,12 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  const signup = async (userData) => {
-    const response = await authAPI.signup(userData);
-    const { user, token } = response.data;
-    
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-    
-    setUser(user);
-    setIsAuthenticated(true);
-    
-    return response;
-  };
+ const signup = async (userData) => {
+  const response = await authAPI.signup(userData);
+  // Do NOT store token or set auth state here
+  return response;
+};
+
 
   const logout = () => {
     localStorage.removeItem('token');
